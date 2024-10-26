@@ -1,13 +1,13 @@
 
 <main class="main">
   <div>
-    <h1>
+    <h1 textFit>
       <ng-container *ngIf="eventCountdownService.name as eventName; else emptyEventName">
         Time to {{eventName}}
       </ng-container>
       <ng-template #emptyEventName>What is the event?</ng-template>
     </h1>
-    <h2>
+    <h2 textFit>
       <ng-container *ngIf="eventCountdownService.timeLeft$ | async as timeLeft; else emptyEventDate">
         {{timeLeft?.days}} days,
         {{timeLeft?.hours}} hours,

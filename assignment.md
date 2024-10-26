@@ -15,3 +15,12 @@ https://v17.angular.io/guide/architecture-services
 #### Angular observables naming conventions
 
 https://v17.angular.io/guide/observables
+
+#### Fitty
+
+Wanted to install angular-fittext but the dependencies has not been updated for 6-7 years. I guess
+that packages is similar to what I built, a wrapper for the fitty package exposing a directive.
+
+https://www.npmjs.com/package/fitty
+
+https://github.com/sollenne/angular-fittext
