@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
-import { interval, map, Observable, of, switchMap } from 'rxjs'
+import { interval, map, Observable, of, Subject, switchMap } from 'rxjs'
 
 type CountDownProperties = { days: number; hours: number; minutes: number; seconds: number }
 
@@ -13,23 +13,29 @@ type CountDownProperties = { days: number; hours: number; minutes: number; secon
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  time = of(new Date('2025-01-01').getTime())
+  date: Subject<Date> = new Subject()
 
   countDown$: Observable<CountDownProperties | null>
 
   constructor() {
     this.countDown$ = of(null)
+    this.date.next(new Date())
   }
 
   ngOnInit() {
-    this.countDown$ = this.time.pipe(
-      switchMap(time => interval(1000).pipe(map(() => this.getTimeLeft(time)))),
+    this.countDown$ = this.date.pipe(
+      switchMap(date => interval(1000).pipe(map(() => this.getTimeLeft(date)))),
     )
   }
 
-  private getTimeLeft(currentTime: number): CountDownProperties {
+  setDate($event: Event) {
+    const { value } = $event.target as HTMLInputElement
+    this.date.next(new Date(value))
+  }
+
+  private getTimeLeft(currentDate: Date): CountDownProperties {
     const now = new Date().getTime()
-    const distance = currentTime - now
+    const distance = currentDate.getTime() - now
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24))
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
