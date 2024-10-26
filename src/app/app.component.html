@@ -1,6 +1,9 @@
 
 <main class="main">
   <div>
+    <h1>Time to
+      <ng-container *ngIf="event$  | async as event">{{event}}</ng-container>
+    </h1>
     <h2 *ngIf="countDown$  | async as countDown">
       {{countDown?.days}} days,
       {{countDown?.hours}} hours,
@@ -10,6 +13,7 @@
   </div>
 
   <div>
+    <input  (change)="setEvent($event)" />
     <input type="date" (change)="setDate($event)" />
   </div>
 </main>

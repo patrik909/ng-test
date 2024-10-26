@@ -13,24 +13,34 @@ type CountDownProperties = { days: number; hours: number; minutes: number; secon
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  date: Subject<Date> = new Subject()
+  event$: Subject<string> = new Subject()
+
+  date$: Subject<Date> = new Subject()
 
   countDown$: Observable<CountDownProperties | null>
 
   constructor() {
     this.countDown$ = of(null)
-    this.date.next(new Date())
+    this.date$.next(new Date())
+    this.event$.next('')
   }
 
   ngOnInit() {
-    this.countDown$ = this.date.pipe(
+    // Stop interval when date is passed
+    this.countDown$ = this.date$.pipe(
       switchMap(date => interval(1000).pipe(map(() => this.getTimeLeft(date)))),
     )
   }
 
   setDate($event: Event) {
     const { value } = $event.target as HTMLInputElement
-    this.date.next(new Date(value))
+    this.date$.next(new Date(value))
+  }
+
+  setEvent($event: Event) {
+    // Should this be triggered on every value change? Currently changing on blur
+    const { value } = $event.target as HTMLInputElement
+    this.event$.next(value)
   }
 
   private getTimeLeft(currentDate: Date): CountDownProperties {
