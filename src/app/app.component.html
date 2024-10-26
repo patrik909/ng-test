@@ -1,19 +1,23 @@
 
 <main class="main">
   <div>
-    <h1>Time to
-      <ng-container *ngIf="event$  | async as event">{{event}}</ng-container>
+    <h1>
+      <ng-container *ngIf="event$ | async as eventName; else emptyEventName">Time to {{eventName}}</ng-container>
+      <ng-template #emptyEventName>What is the event?</ng-template>
     </h1>
-    <h2 *ngIf="countDown$  | async as countDown">
-      {{countDown?.days}} days,
-      {{countDown?.hours}} hours,
-      {{countDown?.minutes}} minutes,
-      {{countDown?.seconds}} seconds
+    <h2>
+      <ng-container *ngIf="countDown$ | async as eventDate; else emptyEventDate">
+        {{eventDate?.days}} days,
+        {{eventDate?.hours}} hours,
+        {{eventDate?.minutes}} minutes,
+        {{eventDate?.seconds}} seconds
+      </ng-container>
+      <ng-template #emptyEventDate>What is the date?</ng-template>
     </h2>
   </div>
 
   <div>
-    <input  (change)="setEvent($event)" />
+    <input (change)="setEvent($event)" />
     <input type="date" (change)="setDate($event)" />
   </div>
 </main>
