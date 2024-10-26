@@ -1,6 +1,13 @@
 
 <main class="main">
-  <h1>Hello! 👋</h1>
+  <div>
+    <h2 *ngIf="countDown$  | async as countDown">
+      {{countDown?.days}}
+      {{countDown?.hours}}
+      {{countDown?.minutes}}
+      {{countDown?.seconds}}
+    </h2>
+  </div>
 </main>
 
 <router-outlet />
