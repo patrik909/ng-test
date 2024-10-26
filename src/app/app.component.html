@@ -2,17 +2,24 @@
 <main class="main">
   <div>
     <h1>
-      <ng-container *ngIf="event$ | async as eventName; else emptyEventName">Time to {{eventName}}</ng-container>
+      <ng-container *ngIf="eventCountdownService.name as eventName; else emptyEventName">
+        Time to {{eventName}}
+      </ng-container>
       <ng-template #emptyEventName>What is the event?</ng-template>
     </h1>
     <h2>
-      <ng-container *ngIf="countDown$ | async as eventDate; else emptyEventDate">
-        {{eventDate?.days}} days,
-        {{eventDate?.hours}} hours,
-        {{eventDate?.minutes}} minutes,
-        {{eventDate?.seconds}} seconds
+      <ng-container *ngIf="eventCountdownService.timeLeft$ | async as timeLeft; else emptyEventDate">
+        {{timeLeft?.days}} days,
+        {{timeLeft?.hours}} hours,
+        {{timeLeft?.minutes}} minutes,
+        {{timeLeft?.seconds}} seconds
       </ng-container>
-      <ng-template #emptyEventDate>What is the date?</ng-template>
+      <ng-template #emptyEventDate>
+        <ng-container *ngIf="!eventCountdownService.isExpired; else expiredDate">
+          What is the date?
+        </ng-container>
+        <ng-template #expiredDate>EXPIRED</ng-template>
+      </ng-template>
     </h2>
   </div>
 
