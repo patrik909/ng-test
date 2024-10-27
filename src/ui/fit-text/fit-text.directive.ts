@@ -3,9 +3,9 @@ import fitty, { FittyInstance } from 'fitty'
 
 @Directive({
   standalone: true,
-  selector: '[textFit]',
+  selector: '[fitText]',
 })
-export class TextFitDirective implements AfterViewInit, OnDestroy {
+export class FitTextDirective implements AfterViewInit, OnDestroy {
   private fittyInstance: FittyInstance | undefined
 
   constructor(private el: ElementRef) {}

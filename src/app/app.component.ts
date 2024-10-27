@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { EventCountdownService } from '../event-countdown/event-countdown.service'
-import { TextFitDirective } from '../ui/text-fit-directive/text-fit-directive'
+import { FitTextDirective } from '../ui/fit-text/fit-text.directive'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, TextFitDirective],
+  imports: [RouterOutlet, CommonModule, FitTextDirective],
   providers: [EventCountdownService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
