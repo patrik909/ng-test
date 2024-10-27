@@ -24,8 +24,8 @@
   </div>
 
   <div>
-    <input (change)="setEvent($event)" />
-    <input type="date" (change)="setDate($event)" />
+    <input (input)="setName($event)" [value]="eventCountdownService.name" />
+    <input type="date" [value]="eventCountdownService.date$ | async" (change)="setDate($event)" />
   </div>
 </main>
 

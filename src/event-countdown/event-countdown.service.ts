@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core'
-import { interval, map, Observable, of, Subject, switchMap } from 'rxjs'
+import { interval, map, Observable, Subject, switchMap } from 'rxjs'
 import { EventCountdown } from './event-countdown.types'
 
 @Injectable()
 export class EventCountdownService {
-  public date$: Subject<Date> = new Subject()
+  public date$: Subject<string> = new Subject()
 
   public name: string | null = null
 
@@ -13,7 +13,7 @@ export class EventCountdownService {
   public isExpired: boolean = false
 
   public setDate(value: string) {
-    this.date$.next(new Date(value))
+    this.date$.next(value)
   }
 
   public setName(value: string) {
@@ -34,9 +34,9 @@ export class EventCountdownService {
     )
   }
 
-  private getTimeLeft(currentDate: Date): EventCountdown | null {
+  private getTimeLeft(currentDate: string): EventCountdown | null {
     const now = new Date().getTime()
-    const distance = currentDate.getTime() - now
+    const distance = new Date(currentDate).getTime() - now
 
     if (distance < 0) {
       return null
