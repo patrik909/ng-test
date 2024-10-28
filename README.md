@@ -1,33 +1,51 @@
-# Description & requirements
+# Event count down
 
-Your objective in this assignment is to create a countdown app built using this boilerplate (+ any other tools of your choice) that follows the design specifications provided [in this Figma file](https://www.figma.com/file/UPEugUz5jM9IzIkWft2Y9m/NC-challenge). The app should work in portrait as well as in landscape mode while the text displayed on the screen should always fill the whole width of the screen.
+```sh
+npm i
+ng serve
+```
 
-In your app, it should be possible to define the end date and the name of the event taking place on that day. The countdown should always start from the current time and it should display the time remaining to your specified end date in the following format: Days, Hours(h), Minutes(m), Seconds(s) *(e.g., 3 days, 15 h, 20 m, 5 s)*. To make sure the text always covers the entire screen width, it should resize whenever necessary to achieve this objective.
+### Tools
 
-The purpose of the solution is to “fit” the input text into an element in one line (no line breaks, filling the whole width) using the maximum possible font-size.
+The application was built using the provided boilerplate code. I've only added `fitty` as additional
+tool, which is a lightweight helper package for fitting text into a container. There was a angular
+specific package called `angular-fittext`, unfortunately it has not been updated for 6-7 years. The
+functionality was applied to a certain text element using directive, so I decided to build one using
+`fitty`.
 
-Please make sure that your text fit solution is reusable and that the event name, as well as the specified end date, are persisted between page reloads.
+I've now also noticed there is a newer package available for angular called `ng2-fittext`.
 
-**Once you feel ready to share your solution, please:**
+https://www.npmjs.com/package/fitty
 
-- Commit the code to Github or your favorite VCS.
-- Write a simple README.md explaining how to set up the project (assuming it’s read by a developer who is experienced with all the used tools).
-- Include a URL to a deployed working Web page (use netlify.com or github.io or whatever simple hosting tool that works for you).
+https://github.com/sollenne/angular-fittext
 
-Please put the resulting project in a public github repository and provide a link to it. Please make it easy for us to test the result.
+https://www.npmjs.com/package/ng2-fittext
 
-## Optional goals
+### Reusable components
 
-You’re free to complete this additional goal to get a higher score if you want!
+I created one for the input only to show case the importance of making recurring code reusable.
+There was not other elements possible to apply this to. The input fields has no validation, with
+more time this would have been in the scope.
 
-1. Write suggestions of how this solution can be improved. Describe what the next steps would be in order for this app to be production ready. 
+### Structure
 
-## Running the app
+I could have placed more code within src/event-countdown. For larger application I prefer to use the
+Package by feature rather than Package by layer approach, for this assignment is was definately not
+necessary - but did something in between.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. 
+### Testing
 
-## Further help
+Testing is an crucial part of coding, however I decided to not install jasmine or mocha within this
+project.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+### Other sources used during development
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+https://www.w3schools.com/howto/howto_js_countdown.asp
+
+https://stackoverflow.com/questions/39547858/ng-container-vs-template
+
+https://v17.angular.io/guide/architecture-services
+
+https://v17.angular.io/guide/observables
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries
