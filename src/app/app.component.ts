@@ -19,6 +19,14 @@ export class AppComponent implements AfterViewInit {
 
   constructor(public eventCountdownService: EventCountdownService) {}
 
+  get emptyNameString(): string {
+    return `What is the event's name?`
+  }
+
+  get emptyDateString(): string {
+    return this.eventCountdownService.isExpired ? 'Expired' : 'What is the date?'
+  }
+
   ngAfterViewInit(): void {
     const persistedDate = this.getPersistedData(this.PERSIST_DATE_KEY)
     const persistedName = this.getPersistedData(this.PERSIST_NAME_KEY)

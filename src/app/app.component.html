@@ -5,7 +5,7 @@
       <ng-container *ngIf="eventCountdownService.name as eventName; else emptyEventName">
         Time to {{eventName}}
       </ng-container>
-      <ng-template #emptyEventName>What is the event?</ng-template>
+      <ng-template #emptyEventName>{{emptyNameString}}</ng-template>
     </h1>
     <h2 fitText>
       <ng-container *ngIf="eventCountdownService.timeLeft$ | async as timeLeft; else emptyEventDate">
@@ -15,15 +15,12 @@
         {{timeLeft?.seconds}} seconds
       </ng-container>
       <ng-template #emptyEventDate>
-        <ng-container *ngIf="!eventCountdownService.isExpired; else expiredDate">
-          What is the date?
-        </ng-container>
-        <ng-template #expiredDate>EXPIRED</ng-template>
+        {{emptyDateString}}
       </ng-template>
     </h2>
   </div>
 
-  <div>
+  <div class="input-wrapper">
     <input (input)="setName($event)" [value]="eventCountdownService.name" />
     <input type="date" [value]="eventCountdownService.date$ | async" (change)="setDate($event)" />
   </div>
