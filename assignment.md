@@ -24,3 +24,7 @@ that packages is similar to what I built, a wrapper for the fitty package exposi
 https://www.npmjs.com/package/fitty
 
 https://github.com/sollenne/angular-fittext
+
+#### Landscape
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries
