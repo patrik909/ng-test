@@ -1,33 +1,39 @@
-
 <main class="main">
   <div class="heading-wrapper">
     <h1 class="heading" fitText>
       <ng-container *ngIf="eventCountdownService.name as eventName; else emptyEventName">
-        Time to {{eventName}}
+        Time to {{ eventName }}
       </ng-container>
-      <ng-template #emptyEventName>{{emptyNameString}}</ng-template>
+      <ng-template #emptyEventName>{{ emptyNameString }}</ng-template>
     </h1>
     <h2 class="heading" fitText>
       <ng-container *ngIf="eventCountdownService.timeLeft$ | async as timeLeft; else emptyEventDate">
-        {{timeLeft?.days}} days,
-        {{timeLeft?.hours}}h,
-        {{timeLeft?.minutes}}m,
-        {{timeLeft?.seconds}}s
+        {{ timeLeft?.days }} days, 
+        {{ timeLeft?.hours }}h, 
+        {{ timeLeft?.minutes }}m,
+        {{ timeLeft?.seconds }}s
       </ng-container>
       <ng-template #emptyEventDate>
-        {{emptyDateString}}
+        {{ emptyDateString }}
       </ng-template>
     </h2>
   </div>
 
   <div class="input-wrapper">
-    <div>
-      <p>Title</p>
-      <input (input)="setName($event)" [value]="eventCountdownService.name" />
-    </div>
-   <div>
-    <p>Date</p>
-    <input type="date" [value]="eventCountdownService.date$ | async" (change)="setDate($event)" />
-   </div>
+    <input-component
+      id="title-input"
+      label="Title"
+      placeholder="Add title"
+      (valueChange)="setName($event)"
+      [value]="eventCountdownService.name"
+    />
+    <input-component
+      id="date-input"
+      label="Date"
+      type="date"
+      placeholder="Add date"
+      (valueChange)="setDate($event)"
+      [value]="eventCountdownService.date$ | async"
+    />
   </div>
 </main>

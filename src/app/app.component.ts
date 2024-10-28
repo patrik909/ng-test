@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common'
 import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core'
 import { EventCountdownService } from '../event-countdown/event-countdown.service'
 import { FitTextDirective } from '../ui/fit-text/fit-text.directive'
+import { InputComponent } from '../ui/input/input.component'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FitTextDirective],
+  imports: [CommonModule, FitTextDirective, InputComponent],
   providers: [EventCountdownService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
@@ -24,7 +25,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   get emptyDateString(): string {
-    return this.eventCountdownService.isExpired ? 'Expired' : 'What is the date?'
+    return this.eventCountdownService.isExpired ? 'The date is expired =(' : 'What is the date?'
   }
 
   ngAfterViewInit(): void {
@@ -34,14 +35,12 @@ export class AppComponent implements AfterViewInit {
     if (persistedName) this.eventCountdownService.setName(persistedName)
   }
 
-  public setDate({ target }: Event): void {
-    const { value } = target as HTMLInputElement
+  public setDate(value: string): void {
     this.persistData(this.PERSIST_DATE_KEY, value)
     this.eventCountdownService.setDate(value)
   }
 
-  public setName({ target }: Event): void {
-    const { value } = target as HTMLInputElement
+  public setName(value: string): void {
     this.persistData(this.PERSIST_NAME_KEY, value)
     this.eventCountdownService.setName(value)
   }

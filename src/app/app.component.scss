@@ -30,20 +30,6 @@ main {
     justify-content: center;
     align-items: center;
     gap: 40px;
-
-    p {
-      margin-bottom: 5px;
-    }
-
-    input {
-      background-color: transparent;
-      border: 1px solid $borderColor;
-      border-radius: 4px;
-      box-sizing: border-box;
-      width: 278px;
-      padding: 18px 10px;
-      font-size: $baseFontSize;
-    }
   }
 }
 
