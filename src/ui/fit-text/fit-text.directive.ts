@@ -12,7 +12,7 @@ export class FitTextDirective implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): void {
     this.fittyInstance = fitty(this.el.nativeElement, {
-      maxSize: 100,
+      maxSize: 80,
       multiLine: false,
     })
   }
