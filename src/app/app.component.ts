@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { AfterViewInit, Component } from '@angular/core'
+import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { EventCountdownService } from '../event-countdown/event-countdown.service'
 import { FitTextDirective } from '../ui/fit-text/fit-text.directive'
@@ -9,6 +9,7 @@ import { FitTextDirective } from '../ui/fit-text/fit-text.directive'
   standalone: true,
   imports: [RouterOutlet, CommonModule, FitTextDirective],
   providers: [EventCountdownService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
