@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common'
 import { AfterViewInit, ChangeDetectionStrategy, Component } from '@angular/core'
-import { RouterOutlet } from '@angular/router'
 import { EventCountdownService } from '../event-countdown/event-countdown.service'
 import { FitTextDirective } from '../ui/fit-text/fit-text.directive'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FitTextDirective],
+  imports: [CommonModule, FitTextDirective],
   providers: [EventCountdownService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
